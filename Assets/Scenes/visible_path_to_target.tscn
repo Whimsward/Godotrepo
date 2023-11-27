@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://esttkd4t7x8d"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/VisiblePathToTarget.gd" id="1_8qan6"]
+
+[node name="VisiblePathToTarget" type="Line2D"]
+points = PackedVector2Array(48, 120, 192, 16)
+width = 2.0
+default_color = Color(0, 0.835294, 0.839216, 1)
+script = ExtResource("1_8qan6")

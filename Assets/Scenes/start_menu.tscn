@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://gkkiob21cyoh"]
+
+[ext_resource type="Theme" uid="uid://cmcm151piqt5e" path="res://Assets/Resources/WhimsMenuTheme.tres" id="1_4ry7h"]
+[ext_resource type="Script" path="res://Assets/Scripts/start_menu.gd" id="1_nithe"]
+[ext_resource type="PackedScene" uid="uid://dvbrmxhru5jdh" path="res://Assets/Scenes/world.tscn" id="2_wmia5"]
+[ext_resource type="PackedScene" uid="uid://dnnfu6or6ei42" path="res://Assets/Scenes/zone_select.tscn" id="3_w24wu"]
+[ext_resource type="Script" path="res://Assets/Scripts/SceneManager.gd" id="5_e42d0"]
+
+[node name="Start Menu" type="Node"]
+script = ExtResource("1_nithe")
+next_scene = ExtResource("2_wmia5")
+
+[node name="StartPage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_4ry7h")
+
+[node name="ColorRect" type="ColorRect" parent="StartPage"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = ExtResource("1_4ry7h")
+color = Color(0.227451, 0.482353, 0.419608, 1)
+
+[node name="Title" type="Label" parent="StartPage/ColorRect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4ry7h")
+text = "ALOFT"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="StartPage"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_4ry7h")
+
+[node name="ZoneSelect" parent="StartPage" instance=ExtResource("3_w24wu")]
+layout_mode = 1
+offset_top = -15.5
+offset_bottom = 15.5
+
+[node name="SceneManager" type="Node2D" parent="."]
+script = ExtResource("5_e42d0")
+
+[connection signal="index_pressed" from="StartPage/ZoneSelect/Start" to="." method="_on_start_index_pressed"]
+
+[editable path="StartPage/ZoneSelect"]

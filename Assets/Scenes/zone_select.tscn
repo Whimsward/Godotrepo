@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnnfu6or6ei42"]
+
+[ext_resource type="Theme" uid="uid://cmcm151piqt5e" path="res://Assets/Resources/WhimsMenuTheme.tres" id="1_eibvx"]
+[ext_resource type="PackedScene" uid="uid://q4u7tqkyuuga" path="res://Assets/Scenes/choose_mode.tscn" id="1_j85m5"]
+
+[node name="ZoneSelect" type="MenuBar"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eibvx")
+
+[node name="Start" parent="." instance=ExtResource("1_j85m5")]
+visible = false
+theme = ExtResource("1_eibvx")

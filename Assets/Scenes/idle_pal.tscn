@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bl12u075mluq2"]
+
+[node name="IdlePalTarget" type="Marker2D"]

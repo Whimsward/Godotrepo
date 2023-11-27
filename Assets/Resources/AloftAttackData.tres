@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AttackData" load_steps=2 format=3 uid="uid://ddpm1hqvwllb2"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/AttackData.gd" id="1_2a2td"]
+
+[resource]
+script = ExtResource("1_2a2td")
+Atk_Projectile = true
+Atk_Dmg = 10
+Atk_Delay = 2

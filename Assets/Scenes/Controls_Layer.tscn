@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk6ebsmppbf1l"]
+
+[ext_resource type="Texture2D" uid="uid://dp4tgp7q2a70c" path="res://Assets/Resources/Sprite sheet/WindySpriteButton smaller.png" id="1_3k53v"]
+[ext_resource type="Texture2D" uid="uid://b4olb8xoaycs5" path="res://Assets/Resources/Sprite sheet/DarkenedSprite.png" id="2_0m6ny"]
+[ext_resource type="Texture2D" uid="uid://bay8beac12ycq" path="res://Assets/Resources/Sprite sheet/WindySpriteButtonSmallPressed.png" id="3_qd8ft"]
+[ext_resource type="Texture2D" uid="uid://dcb7gj6rwpbmn" path="res://Assets/Resources/Sprite sheet/Flame Ball.png" id="4_v7d2n"]
+[ext_resource type="Texture2D" uid="uid://biieggxekrcho" path="res://Assets/Resources/Sprite sheet/Flame Ball Share.png" id="5_u21nj"]
+
+[node name="Controls_Layer" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TouchLeft" type="TouchScreenButton" parent="Control"]
+position = Vector2(96, 136)
+texture_normal = ExtResource("1_3k53v")
+texture_pressed = ExtResource("2_0m6ny")
+action = "Left"
+
+[node name="TouchRight" type="TouchScreenButton" parent="Control"]
+position = Vector2(192, 136)
+texture_normal = ExtResource("1_3k53v")
+texture_pressed = ExtResource("2_0m6ny")
+action = "Right"
+
+[node name="TouchJump" type="TouchScreenButton" parent="Control"]
+position = Vector2(136, 128)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_qd8ft")
+texture_pressed = ExtResource("2_0m6ny")
+action = "Jump"
+
+[node name="TouchAtk" type="TouchScreenButton" parent="Control"]
+position = Vector2(56, 144)
+texture_normal = ExtResource("4_v7d2n")
+texture_pressed = ExtResource("5_u21nj")
+action = "Attack"
+visibility_mode = 1

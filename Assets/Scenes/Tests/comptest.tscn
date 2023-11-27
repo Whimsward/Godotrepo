@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://bk2ftcwiqplij"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Tests/comptest.gd" id="1_6r5jb"]
+[ext_resource type="Texture2D" uid="uid://f4xldvj68buy" path="res://Assets/Resources/Sprite sheet/Ardor_Idle.png" id="1_f0ekv"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerDriver.gd" id="2_nw78f"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerMovementData.gd" id="3_cdqq5"]
+[ext_resource type="Texture2D" uid="uid://dcb7gj6rwpbmn" path="res://Assets/Resources/Sprite sheet/Flame Ball.png" id="4_uf1kh"]
+[ext_resource type="Script" path="res://Assets/Scenes/Tests/FireOrbie.gd" id="5_s0sod"]
+
+[sub_resource type="Resource" id="Resource_lf17w"]
+script = ExtResource("3_cdqq5")
+speed = 120.0
+jump_velocity = -275.0
+acceleration = 400.0
+friction = 1000.0
+has_gravity = true
+gravity_scale = 0.9
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rf212"]
+radius = 40.0
+height = 168.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31x1f"]
+atlas = ExtResource("1_f0ekv")
+region = Rect2(4, 22, 82, 164)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqhvf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31x1f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fwtpo"]
+radius = 8.0
+height = 18.0
+
+[node name="KidscanCodeFollowtest" type="Node2D"]
+script = ExtResource("1_6r5jb")
+
+[node name="CharTest" type="CharacterBody2D" parent="."]
+position = Vector2(68, 121)
+scale = Vector2(0.25, 0.25)
+collision_mask = 5
+script = ExtResource("2_nw78f")
+movement_data = SubResource("Resource_lf17w")
+Has_Pal = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharTest"]
+shape = SubResource("CapsuleShape2D_rf212")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharTest"]
+sprite_frames = SubResource("SpriteFrames_dqhvf")
+
+[node name="Target" type="Marker2D" parent="CharTest/AnimatedSprite2D"]
+
+[node name="FireOrbie" type="CharacterBody2D" parent="CharTest" node_paths=PackedStringArray("parent")]
+position = Vector2(688, -56)
+scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("5_s0sod")
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharTest/FireOrbie"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_fwtpo")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharTest/FireOrbie"]
+texture = ExtResource("4_uf1kh")
+
+[node name="TestFloor" type="StaticBody2D" parent="."]
+position = Vector2(160, 179)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="TestFloor"]
+polygon = PackedVector2Array(-160, -14, -160, 9, 160, 9, 159, -43, 136, -43, 136, -21, 52, -21, 17, -54, -49, -19, -134, -20, -141, -106, -160, -99)
+
+[node name="Polygon2D" type="Polygon2D" parent="TestFloor/CollisionShape2D"]
+color = Color(0.121569, 0.45098, 0.4, 1)

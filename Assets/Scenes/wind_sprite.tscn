@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://bwtmkvquu7wji"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/wind_sprite.gd" id="1_0ujyu"]
+[ext_resource type="Texture2D" uid="uid://bwirfy0o6elb6" path="res://Assets/Resources/Sprite sheet/WindySprite.png" id="2_fjsqi"]
+[ext_resource type="Resource" uid="uid://byqosagqwc2lw" path="res://Assets/Resources/PlayableWindSpriteMovementData.tres" id="2_vkhv3"]
+[ext_resource type="Texture2D" uid="uid://b4olb8xoaycs5" path="res://Assets/Resources/Sprite sheet/DarkenedSprite.png" id="3_h4veh"]
+[ext_resource type="Script" path="res://Assets/Scripts/StateMachine.gd" id="4_wwy3d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mkeov"]
+height = 64.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lavg"]
+atlas = ExtResource("2_fjsqi")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de8yp"]
+atlas = ExtResource("2_fjsqi")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43mou"]
+atlas = ExtResource("2_fjsqi")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7esw"]
+atlas = ExtResource("2_fjsqi")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyu77"]
+atlas = ExtResource("3_h4veh")
+region = Rect2(0, 0, 32, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cm1e5"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6lavg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de8yp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43mou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7esw")
+}],
+"loop": true,
+"name": &"All",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_de8yp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43mou")
+}],
+"loop": true,
+"name": &"Flit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_43mou")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6lavg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyu77")
+}],
+"loop": true,
+"name": &"Locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7esw")
+}],
+"loop": true,
+"name": &"Pal_Atk",
+"speed": 5.0
+}]
+
+[node name="wind_sprite" type="CharacterBody2D" groups=["pals"]]
+position = Vector2(0, -48)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_0ujyu")
+MovementData = ExtResource("2_vkhv3")
+
+[node name="Wind_Sprite_Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+shape = SubResource("CapsuleShape2D_mkeov")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_cm1e5")
+animation = &"Idle"
+frame_progress = 0.94087
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("4_wwy3d")

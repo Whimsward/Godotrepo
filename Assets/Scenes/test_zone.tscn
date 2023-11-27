@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://vjueb4fqlxho"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/world.gd" id="1_487v1"]
+[ext_resource type="PackedScene" uid="uid://bwtmkvquu7wji" path="res://Assets/Scenes/wind_sprite.tscn" id="2_mwb13"]
+[ext_resource type="PackedScene" uid="uid://dk6ebsmppbf1l" path="res://Assets/Scenes/Controls_Layer.tscn" id="4_r1swi"]
+[ext_resource type="PackedScene" uid="uid://bl12u075mluq2" path="res://Assets/Scenes/idle_pal.tscn" id="5_5n00f"]
+
+[node name="Zone" type="Node"]
+script = ExtResource("1_487v1")
+
+[node name="Controls_Layer" parent="." instance=ExtResource("4_r1swi")]
+
+[node name="GameObjects" type="CanvasGroup" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameObjects"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameObjects/StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 24, 8, 24, 152, 112, 144, 168, 120, 224, 144, 264, 160, 304, 152, 304, 8, 320, 8, 320, 184, 0, 184)
+
+[node name="Polygon2D" type="Polygon2D" parent="GameObjects/StaticBody2D/CollisionPolygon2D"]
+
+[node name="wind_sprite" parent="GameObjects" instance=ExtResource("2_mwb13")]
+position = Vector2(216, 56)
+Has_player = false
+
+[node name="IdlePalTarget" parent="GameObjects" instance=ExtResource("5_5n00f")]
+position = Vector2(72, 56)
